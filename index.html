@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name | Portfolio</title>
+  <title>Bryant Chendra Shiung | Portfolio</title>
   <style>
     /* ========== Base styles ========== */
     :root {
@@ -12,7 +12,7 @@
       --card-bg: #ffffff;
       --accent: #2563eb;
       --muted: #6b7280;
-      --radius: 0.9rem;
+      --radius: 0;
       --shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.2);
     }
 
@@ -40,12 +40,16 @@
     /* ========== Layout ========== */
     
     /* HERO SECTION WITH PARTICLE BACKGROUND */
-    .hero {
+    .hero header {
       position: relative;
-      height: 100vh;        /* one full screen */
-      overflow: hidden;
-      background: #020617;  /* dark hero background */
-      color: #f9fafb;
+      z-index: 1;
+      background: transparent;
+    
+      /* center everything vertically + horizontally */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     /* particles canvas lives only inside hero */
@@ -74,8 +78,25 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+    
+      /* center text */
+      align-items: center;
+      text-align: center;
     }
 
+    .title-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .profile-pic {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(249, 250, 251, 0.35);
+    }    
     .site-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -98,7 +119,7 @@
     nav a {
       font-size: 0.9rem;
       padding: 0.35rem 0.75rem;
-      border-radius: 999px;
+      border-radius: 0;
       border: 1px solid rgba(249, 250, 251, 0.2);
     }
 
@@ -206,17 +227,23 @@
     }
 
     /* Very wide screens: slightly increase font + spacing */
+/* Large screens: stronger hero presence */
     @media (min-width: 1024px) {
-      body {
-        font-size: 1rem;
-      }
-
       .site-title {
-        font-size: 1.9rem;
+        font-size: 2.2rem;
       }
-
-      section {
-        padding: 1.5rem 1.5rem 1.75rem;
+    
+      .profile-pic {
+        width: 88px;
+        height: 88px;
+      }
+    
+      .tagline {
+        font-size: 1.05rem;
+      }
+    
+      .header-inner {
+        gap: 1rem;
       }
     }
   </style>
@@ -227,17 +254,23 @@
 
     <header>
       <div class="header-inner">
-      <h1 class="site-title">Your Name</h1>
-      <p class="tagline">
-        Quantitative finance & data science · Interested in derivatives, portfolio optimization, and statistical modeling
-      </p>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#quant-projects">Quant / Finance</a>
-        <a href="#data-projects">Data & Analytics</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+        <div class="title-row">
+          <img class="profile-pic" src="assets/profile_pic.JPG" alt="Profile photo" />
+          <h1 class="site-title">Your Name</h1>
+        </div>
+    
+        <div class="taglines">
+          <p class="tagline">Quantitative Finance · Statistics · Machine Learning</p>
+          <p class="tagline">Interested in derivatives, portfolio optimization, and statistical modeling.</p>
+        </div>
+    
+        <nav>
+          <a href="#about">About</a>
+          <a href="#quant">Quant / Finance</a>
+          <a href="#data">Data & Analytics</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
     </header>
   </section>
 
