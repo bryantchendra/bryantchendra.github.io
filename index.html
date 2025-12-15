@@ -38,7 +38,6 @@
     }
 
     /* ========== Layout ========== */
-    
     /* HERO SECTION WITH PARTICLE BACKGROUND */
     .hero {
       position: relative;
@@ -52,12 +51,13 @@
     #particles-js {
       position: absolute;
       inset: 0;
-      z-index: 0;
-      pointer-events: none;
+      z-index: 0; /* canvas behind header content */
     }
 
-    
-    header {
+    /* header content on top of particles */
+    .hero header {
+      position: relative;
+      z-index: 1;
       background: transparent;
       padding: 1.5rem 1rem;
     }
@@ -68,8 +68,6 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-    
-      /* center text */
       align-items: center;
       text-align: center;
     }
@@ -81,13 +79,14 @@
     }
     
     .profile-pic {
-      width: 64px;          /* desktop size */
+      width: 64px;
       height: 64px;
       border-radius: 50%;
-      object-fit: cover;   /* THIS crops the image correctly */
-      object-position: center top; /* adjust face framing */
+      object-fit: cover;
+      object-position: center top;
       border: 2px solid rgba(249, 250, 251, 0.4);
     }
+
     .site-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -105,6 +104,7 @@
       flex-wrap: wrap;
       gap: 0.75rem;
       margin-top: 0.75rem;
+      justify-content: center;
     }
 
     nav a {
@@ -145,7 +145,7 @@
       margin-bottom: 0.75rem;
     }
 
-    /* ========== Project cards ========== */
+    /* ========== Project / experience cards ========== */
 
     .projects-grid {
       display: grid;
@@ -209,8 +209,6 @@
     }
 
     /* ========== Responsive behavior ========== */
-
-    /* Bigger screens: place projects in 2 columns */
     @media (max-width: 600px) {
       .title-row {
         flex-direction: column;
@@ -221,14 +219,8 @@
         width: 84px;
         height: 84px;
       }
-    
-      nav {
-        justify-content: center;
-      }
     }
 
-    /* Very wide screens: slightly increase font + spacing */
-    /* Large screens: stronger hero presence */
     @media (min-width: 1024px) {
       .site-title {
         font-size: 2.2rem;
@@ -267,8 +259,9 @@
         
         <nav>
           <a href="#about">About</a>
-          <a href="#quant">Quant / Finance</a>
-          <a href="#data">Data & Analytics</a>
+          <a href="#experience">Experience</a>
+          <a href="#quant-projects">Quant / Finance</a>
+          <a href="#data-projects">Data & Analytics</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -289,6 +282,44 @@
       </p>
     </section>
 
+    <section id="experience">
+      <h2>Experience & Leadership</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3 class="project-title">Army Service – Leadership Role</h3>
+          <p class="project-tagline">
+            Led teams in high-pressure environments, coordinating operations and making time-critical decisions.
+          </p>
+          <p>
+            Briefly describe what you were responsible for: team size, type of missions/training, any formal
+            leadership appointments, and how this translates to ownership, discipline, and decision-making in a professional setting.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <h3 class="project-title">Rotary Club – Volunteering</h3>
+          <p class="project-tagline">
+            Community engagement and service with an international organisation.
+          </p>
+          <p>
+            Mention the kind of projects you were involved in (fundraising, events, mentoring, etc.),
+            your role, and any initiatives you helped lead or organise.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <h3 class="project-title">[Work Experience Role]</h3>
+          <p class="project-tagline">
+            Brief, role-level summary (e.g. analytics intern, tutoring, part-time finance role).
+          </p>
+          <p>
+            Summarise your responsibilities and highlight anything quantitative, analytical, or client-facing:
+            reporting, dashboards, modelling, stakeholder interaction, or process improvements.
+          </p>
+        </article>
+      </div>
+    </section>
+
     <section id="quant-projects">
       <h2>Quant & Financial Mathematics Projects</h2>
       <div class="projects-grid">
@@ -306,7 +337,6 @@
             <span class="pill">Python</span>
             <span class="pill">CVXPy</span>
             <span class="pill">Portfolio theory</span>
-            <!-- Optional: <a href="LINK_TO_GITHUB" target="_blank">View code →</a> -->
           </p>
         </article>
 
@@ -365,6 +395,16 @@
         </article>
       </div>
     </section>
+
+    <section id="contact">
+      <h2>Contact & Links</h2>
+      <p>If you’d like to connect or see more detail:</p>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
+        <a href="mailto:your.email@domain.com">Email</a>
+        <a href="https://github.com/your-username" target="_blank">GitHub</a>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -374,7 +414,8 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-    <!-- particles.js library from CDN -->
+
+  <!-- particles.js library from CDN -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <!-- your script that loads assets/particles.json -->
