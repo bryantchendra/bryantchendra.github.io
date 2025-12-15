@@ -39,7 +39,7 @@
 
     /* ========== Layout ========== */
     
-/* HERO SECTION WITH PARTICLE BACKGROUND */
+    /* HERO SECTION WITH PARTICLE BACKGROUND */
     .hero {
       position: relative;
       height: 100vh;        /* one full screen */
@@ -52,12 +52,14 @@
     #particles-js {
       position: absolute;
       inset: 0;
-      z-index: -1;          /* behind header content */
+      z-index: 0;           /* sit behind header text but ABOVE hero background */
     }
     
     /* header when inside hero */
     .hero header {
-      background: transparent; /* hero already has dark bg */
+      position: relative;
+      z-index: 1;           /* ensure text/nav are on top of the canvas */
+      background: transparent;
     }
     
     header {
