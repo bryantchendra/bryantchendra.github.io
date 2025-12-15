@@ -44,8 +44,8 @@
       position: relative;
       z-index: 1;
       background: transparent;
+      color: inherit;
     
-      /* center everything vertically + horizontally */
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -56,12 +56,14 @@
     #particles-js {
       position: absolute;
       inset: 0;
-      z-index: 0;           /* sit behind header text but ABOVE hero background */
+      z-index: 0;
+      pointer-events: none;
     }
+
     
     header {
-      background: #020617;
-      color: #f9fafb;
+      background: transparent;
+      color: inherit;
       padding: 1.5rem 1rem;
     }
 
