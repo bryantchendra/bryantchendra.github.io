@@ -91,12 +91,13 @@
     }
     
     .profile-pic {
-      width: 72px;
-      height: 72px;
+      width: 64px;          /* desktop size */
+      height: 64px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(249, 250, 251, 0.35);
-    }    
+      object-fit: cover;   /* THIS crops the image correctly */
+      object-position: center top; /* adjust face framing */
+      border: 2px solid rgba(249, 250, 251, 0.4);
+    }
     .site-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -220,7 +221,7 @@
     /* ========== Responsive behavior ========== */
 
     /* Bigger screens: place projects in 2 columns */
-    @media (min-width: 700px) {
+    @media (min-width: 600px) {
       .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
