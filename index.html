@@ -38,7 +38,28 @@
     }
 
     /* ========== Layout ========== */
-
+    
+/* HERO SECTION WITH PARTICLE BACKGROUND */
+    .hero {
+      position: relative;
+      height: 100vh;        /* one full screen */
+      overflow: hidden;
+      background: #020617;  /* dark hero background */
+      color: #f9fafb;
+    }
+    
+    /* particles canvas lives only inside hero */
+    #particles-js {
+      position: absolute;
+      inset: 0;
+      z-index: -1;          /* behind header content */
+    }
+    
+    /* header when inside hero */
+    .hero header {
+      background: transparent; /* hero already has dark bg */
+    }
+    
     header {
       background: #020617;
       color: #f9fafb;
@@ -199,8 +220,11 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
+  <section class="hero">
+    <div id="particles-js"></div>
+
+    <header>
+      <div class="header-inner">
       <h1 class="site-title">Your Name</h1>
       <p class="tagline">
         Quantitative finance & data science · Interested in derivatives, portfolio optimization, and statistical modeling
@@ -212,7 +236,8 @@
         <a href="#contact">Contact</a>
       </nav>
     </div>
-  </header>
+    </header>
+  </section>
 
   <main>
     <section id="about">
@@ -324,5 +349,10 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+    <!-- particles.js library from CDN -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <!-- your script that loads assets/particles.json -->
+  <script src="js/app.js"></script>
 </body>
 </html>
