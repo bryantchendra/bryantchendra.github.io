@@ -40,16 +40,12 @@
     /* ========== Layout ========== */
     
     /* HERO SECTION WITH PARTICLE BACKGROUND */
-    .hero header {
+    .hero {
       position: relative;
-      z-index: 1;
-      background: transparent;
-      color: inherit;
-    
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      background: #020617;
+      color: #f9fafb;
     }
     
     /* particles canvas lives only inside hero */
@@ -63,7 +59,6 @@
     
     header {
       background: transparent;
-      color: inherit;
       padding: 1.5rem 1rem;
     }
 
@@ -216,14 +211,24 @@
     /* ========== Responsive behavior ========== */
 
     /* Bigger screens: place projects in 2 columns */
-    @media (min-width: 600px) {
-      .projects-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    @media (max-width: 600px) {
+      .title-row {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    
+      .profile-pic {
+        width: 84px;
+        height: 84px;
+      }
+    
+      nav {
+        justify-content: center;
       }
     }
 
     /* Very wide screens: slightly increase font + spacing */
-/* Large screens: stronger hero presence */
+    /* Large screens: stronger hero presence */
     @media (min-width: 1024px) {
       .site-title {
         font-size: 2.2rem;
