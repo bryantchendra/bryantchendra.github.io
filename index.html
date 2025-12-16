@@ -14,6 +14,7 @@
       --muted: #6b7280;
       --radius: 0;
       --shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.2);
+      --nav-height: 64px;   /* default for desktop/tablet */
     }
 
     * {
@@ -44,26 +45,35 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 20;                     /* above particles + hero content */
+      height: var(--nav-height);
+      z-index: 1000;                     /* above particles + hero content */
       background: rgba(2, 6, 23, 0.92);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    
+        
     .topnav-inner {
-      max-width: 1100px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 0.6rem 1rem;
+      padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-between; /* brand left, links right */
     }
     
     /* Name on the left */
     .topnav .brand {
       font-weight: 600;
-      color: #f9fafb;
-      font-size: 0.95rem;
+      color: #ffffff;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: none;
+      text-decoration: none;
+    }
+
+    /* remove hover for Name */ 
+    .topnav .brand:hover {
+      background: none !important;
     }
     
     .topnav-links {
@@ -104,6 +114,7 @@
           overflow: hidden;
           background: #020617;
           color: #f9fafb;
+          padding-top: var(--nav-height);
         }
     
     /* particles canvas lives only inside hero */
@@ -148,7 +159,7 @@
       height: 64px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: 60% 30%;
+      object-position: 70% 40%;
       border: 2px solid rgba(249, 250, 251, 0.4);
     }
 
@@ -193,7 +204,8 @@
     }
 
     section {
-      scroll-margin-top: 80px;
+       /* when you click “About / Projects / …”, sections stop just below nav */
+      scroll-margin-top: calc(var(--nav-height) + 16px); 
       background: var(--card-bg);
       border-radius: var(--radius);
       padding: 1.25rem 1.25rem 1.5rem;
@@ -292,6 +304,15 @@
 
     /* ========== Responsive behavior ========== */
     @media (max-width: 600px) {
+      
+      :root {
+        --nav-height: 56px;   /* slightly shorter nav on mobile */
+      }
+
+        .topnav-inner {
+        padding: 0.5rem 0.75rem;
+      }
+      
       .title-row {
         flex-direction: column;
         gap: 0.75rem;
