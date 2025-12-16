@@ -52,13 +52,12 @@
       position: absolute;
       inset: 0;
       z-index: 0; /* canvas behind header content */
-      pointer-events: none;
     }
 
     /* header content on top of particles */
     .hero header {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       background: transparent;
       padding: 1.5rem 1rem;
 
@@ -151,6 +150,22 @@
       margin-bottom: 0.75rem;
     }
 
+    /* Let pointer events pass through the hero content so particles can interact */
+    .header-inner,
+    .title-row,
+    .taglines,
+    .site-title,
+    .tagline {
+      pointer-events: none;
+    }
+    
+    /* But keep links clickable anywhere you still have them (later: sticky nav) */
+    a, button {
+      pointer-events: auto;
+    }
+
+
+    
     /* ========== Project / experience cards ========== */
 
     .projects-grid {
@@ -263,13 +278,6 @@
           <p class="tagline">Interested in derivatives, portfolio optimization, and statistical modeling.</p>
         </div>
         
-        <nav>
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#quant-projects">Quant / Finance</a>
-          <a href="#data-projects">Data & Analytics</a>
-          <a href="#contact">Contact</a>
-        </nav>
       </div>
     </header>
   </section>
