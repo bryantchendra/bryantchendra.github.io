@@ -47,17 +47,17 @@
       right: 0;
       height: var(--nav-height);
       z-index: 1000;                     /* above particles + hero content */
-      background: rgba(2, 6, 23, 0.92);
+      background: rgba(2, 6, 23, 0.72);
       backdrop-filter: blur(8px);
     }
         
     .topnav-inner {
-      max-width: 1300px;
+      max-width: 960px;          /* align with main content width */
       margin: 0 auto;
       padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
-      justify-content: space-between; /* brand left, links right */
+      justify-content: flex-start;  /* brand at left */
     }
     
     /* Name on the left */
@@ -79,6 +79,7 @@
     .topnav-links {
       display: flex;
       gap: 0.5rem;
+      margin-left: auto;
     }
     
     /* Base state for links */
@@ -106,16 +107,15 @@
       color: #f9fafb;
     }
     
-        /* ========== Layout ========== */
-        /* HERO SECTION WITH PARTICLE BACKGROUND */
-        .hero {
-          position: relative;
-          height: 100vh;
-          overflow: hidden;
-          background: #020617;
-          color: #f9fafb;
-          padding-top: var(--nav-height);
-        }
+      /* ========== Layout ========== */
+    /* HERO SECTION WITH PARTICLE BACKGROUND */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #020617;
+      color: #f9fafb;
+    }
     
     /* particles canvas lives only inside hero */
     #particles-js {
@@ -129,10 +129,11 @@
       position: relative;
       z-index: 2;
       background: transparent;
-      padding: 1.5rem 1rem;
+      padding: calc(var(--nav-height) + 1.5rem) 1.5rem 1.5rem;
       pointer-events: none;
-
-      min-height: 100vh;
+    
+      /* hero content fills screen minus nav height */
+      min-height: calc(100vh - var(--nav-height));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -159,7 +160,7 @@
       height: 64px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: 70% 40%;
+      object-position: 80% 40%;
       border: 2px solid rgba(249, 250, 251, 0.4);
     }
 
