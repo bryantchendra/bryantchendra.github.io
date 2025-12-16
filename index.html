@@ -4,14 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bryant Chendra Shiung | Portfolio</title>
-
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  
   <style>
     /* ========== Base styles ========== */
     :root {
@@ -24,7 +16,13 @@
       --shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.2);
       --nav-height: 64px;   /* default for desktop/tablet */
     }
-
+    
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
     * {
       box-sizing: border-box;
     }
@@ -56,6 +54,7 @@
       z-index: 1000;                     /* above particles + hero content */
       background: rgba(2, 6, 23, 0.78);
       backdrop-filter: blur(8px);
+      height: var(--nav-height);
     }
         
     .topnav-inner {
@@ -65,6 +64,8 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;  /* brand at left */
+      height: 100%;
+      padding: 0 1rem; 
     }
     
     /* Name on the left */
