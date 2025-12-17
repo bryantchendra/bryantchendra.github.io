@@ -227,8 +227,11 @@
 
     section h2 {
       margin-top: 0;
-      margin-bottom: 0.75rem;
-      font-size: 1.15rem;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e5e7eb; /* subtle rule */
     }
 
     p {
@@ -255,15 +258,15 @@
     /* ========== Project / experience cards ========== */
 
     .projects-grid {
-      display: grid;
-      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
     .project-card {
-      padding: 1rem;
-      border-radius: 0.75rem;
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
+      background: transparent;
+      border: none;
+      padding: 0;
     }
 
     .project-title {
