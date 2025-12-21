@@ -16,12 +16,6 @@
       --nav-height: 64px;   /* default for desktop/tablet */
     }
     
-    ,
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    
     * {
       box-sizing: border-box;
     }
@@ -52,38 +46,31 @@
       right: 0;
       margin: 0;
       z-index: 1000;                     /* above particles + hero content */
-      background: rgba(2, 6, 23, 0.78);
-      backdrop-filter: blur(8px);
+      background: rgba(2, 6, 23, 0.62);
+      backdrop-filter: blur(10px);
       height: var(--nav-height);
     }
         
-    .topnav-inner {
-      max-width: none;          /* align with main content width */
+    .topnav-inner{
+      max-width: 1100px;      /* try 1040–1200 */
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.25rem;     /* consistent with main */
       display: flex;
       align-items: center;
-      justify-content: flex-start;  /* brand at left */
       height: 100%;
-      padding: 0 1rem; 
+      gap: 1.5rem;            /* controls space between name and tabs */
     }
-    
+
     /* Name on the left */
-    .topnav .brand {
-      max-width: none;
-      width: 100%;
+    .topnav .brand{
       font-weight: 600;
-      color: #ffffff;
-      padding: 0;
-      margin: 0;
-      border: none;
-      padding: 0 2rem;
-      background: none;
+      color: #fff;
       text-decoration: none;
-      white-space: nowrap;      /* keep name on one line */
-      margin-right: 2.5rem;     /* 👈 space between name and About */
-}
+      border: none;
+      white-space: nowrap;
+      margin-right: 0;        /* let `gap` handle it */
     }
+
 
     /* remove hover for Name */ 
     .topnav .brand:hover {
@@ -92,8 +79,7 @@
     
     .topnav-links {
       display: flex;
-      gap: 0.5rem;
-      margin-left: auto;
+      gap: 0.75rem;
     }
     
     /* Base state for links */
@@ -103,8 +89,8 @@
       padding: 0.35rem 0.7rem;
       border-radius: 999px;               /* pill shape */
       text-decoration: none;
-      border: 1px solid transparent;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      border: none;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform .15s ease;
     }
     
     /* Hover state */
@@ -119,6 +105,7 @@
       background: rgba(148, 163, 184, 0.3);
       border-color: rgba(148, 163, 184, 0.3);
       color: #f9fafb;
+      transform: translateY(-1px);
     }
     
       /* ========== Layout ========== */
@@ -190,29 +177,10 @@
       color: #e5e7eb;
     }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
-      justify-content: center;
-    }
-
-    nav a {
-      font-size: 0.9rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 0;
-      border: 1px solid rgba(249, 250, 251, 0.2);
-    }
-
-    nav a:hover {
-      background: rgba(249, 250, 251, 0.1);
-    }
-
     main {
       max-width: 960px;
       margin: 0 auto;  
-      padding: 0 1.25rem;
+      padding: calc(var(--nav-height) + 1.25rem) 1.25rem 0;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -221,22 +189,22 @@
     section {
        /* when you click “About / Projects / …”, sections stop just below nav */
       scroll-margin-top: calc(var(--nav-height) + 16px); 
-      padding: 3rem 0 2.5rem;
+      padding: 1.75rem 0 1.75rem;
     }
 
-    section h2 {
-      margin-top: 0;
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #e5e7eb; /* subtle rule */
+    section h2{
+      margin: 0 0 1rem;
+      font-size: 1.55rem;        /* up from 1.35 */
+      font-weight: 700;         /* subtle emphasis */
+      letter-spacing: -0.02em;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     p {
-      margin-top: 0;
-      margin-bottom: 0.75rem;
+      margin: 0 0 0.9rem;
     }
+
 
     /* Let pointer events pass through the hero content so particles can interact */
     .header-inner,
@@ -251,71 +219,311 @@
     a, button {
       pointer-events: auto;
     }
-
-
     
     /* ========== Project / experience cards ========== */
 
-    .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+    /* Toolbar (filter tabs) */
+    .projects-toolbar{
+      display:flex;
+      gap:.5rem;
+      flex-wrap:wrap;
+      margin: 0 0 1.25rem;
     }
 
-    .project-card {
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-
-    .project-title {
-      font-weight: 600;
-      margin: 0 0 0.3rem;
-    }
-
-    .project-tagline {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin: 0 0 0.45rem;
-    }
-
-    .project-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 0.15rem 0.5rem;
+    .filter-btn{
+      font: inherit;
+      font-size: .9rem;
+      padding: .45rem .85rem;
       border-radius: 999px;
+      border: none;
+      background: #fff;
+      color: #111827;
+      cursor: pointer;
+    }
+
+    .filter-btn:hover{ 
+      background: rgba(148, 163, 184, 0.22);  /* soft grey */
+      border-color: rgba(148, 163, 184, 0.22);
+      color: #000000;
+    }
+
+    .filter-btn.active{
+      background: rgba(148, 163, 184, 0.3);  /* soft grey */
+      border-color: rgba(148, 163, 184, 0.3);
+      color: #000000;
+    }
+
+    /* 3-column grid (auto becomes 2/1 columns on smaller screens) */
+    .projects-grid{
+      display:grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 1024px){
+      .projects-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px){
+      .projects-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Card styling */
+    .project-card{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #ffffff;
       border: 1px solid #e5e7eb;
-      font-size: 0.75rem;
-      margin-right: 0.35rem;
+      border-radius: 14px;
+      padding: 1.1rem 1.1rem 1rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      transition: transform .15s ease, box-shadow .15s ease;
+      position: relative;
+    }
+
+    .project-card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(0,0,0,.10);
+    }
+
+    .card-arrow{
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      opacity: .6;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .card-arrow img{
+      width: 18px;
+      height: 18px;
+    }
+
+    .project-card:hover .card-arrow{
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    .project-card h3{
+      margin: 0 0 .35rem;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .project-card .desc{
+      margin: 0 0 .75rem;
+      color: #4b5563;
+      font-size: .95rem;
+    }
+
+    .project-card .meta{
+      display:flex;
+      gap:.4rem;
+      flex-wrap:wrap;
+    }
+
+    .project-card .pill{
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: .18rem .55rem;
+      font-size: .78rem;
+      color:#374151;
+      background:#f9fafb;
+    }
+
+    /* ===== Timeline (Education / Experience) ===== */
+    .timeline{
+      --gutter: 2.25rem;     /* width of the left rail area */
+      --line: #edf0f4;
+      --dot: 12px;
+      --dot-border: #bfc7d1;
+      position: relative;
+      margin-top: 1.25rem;
+    }
+
+    /* each entry becomes a 2-col layout: gutter | content */
+    .t-item{
+      position: relative;
+      display: grid;
+      grid-template-columns: var(--gutter) 1fr;
+      column-gap: 1.25rem;
+      padding: 0 0 2rem 0;
+    }
+
+    .timeline .t-item:last-child {
+      padding-bottom: 0.1rem; /* keeps layout but stops extra tail */
+    }
+    .timeline .t-item:last-child::after {
+      bottom: 0.1rem;         /* match padding-bottom */
+    }
+
+    /* vertical line (drawn per item so it always aligns with dot) */
+    .t-item::after{
+      content:"";
+      position: absolute;
+      left: calc(var(--gutter) / 2);
+      top: calc(0.2rem + var(--dot) + 6px);   /* dot top + dot size + gap */
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    /* dot */
+    .t-item::before{
+      content:"";
+      position: absolute;
+      left: calc(var(--gutter) / 2);
+      top: 0.2rem;
+      width: var(--dot);
+      height: var(--dot);
+      border-radius: 999px;
+      background: #fff;
+      border: 2px solid var(--dot-border);
+      transform: translateX(-50%);
+      z-index: 1;
+      border-color: #bfc7d1;
+      box-shadow: 0 0 0 4px #fff;
+    }
+
+    /* content sits in column 2 */
+    .t-content{
+      grid-column: 2;
+    }
+
+    /* typography */
+    .t-head{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .t-title{
+      font-weight: 700;
+      font-size: 1.06rem;
+      line-height: 1.3;
+    }
+
+    .t-date{
+      color:#6b7280;
+      font-size:0.9rem;
+      white-space:nowrap;
+    }
+
+    .t-sub{
       margin-top: 0.25rem;
+      color:#6b7280;
+      font-size:0.92rem;
     }
 
-    /* ========== Contact links ========== */
+    .t-row{
+      display:flex;
+      gap: 1rem;
+      margin-top: flex-start;
+    }
 
-    .links {
+    .t-label{
+      min-width: 10.5rem;
+      color:#6b7280;
+      font-size: 0.82rem;
+      letter-spacing: 0.01em;
+      flex: 0 0 10.5rem; /* fixed label column */
+      line-height: 1.4;
+    }
+
+    .t-text{
+      color: #111827;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px){
+      .t-item{
+        grid-template-columns: 1.75rem 1fr;
+        column-gap: .9rem;
+      }
+      .t-head{ flex-direction: column; align-items: flex-start; }
+      .t-row{ flex-direction: column; gap: 0.25rem; }
+      .t-label{ min-width: 0; }
+    }
+
+    /* Only the last timeline item: shorten the line so it doesn't hang below content */
+    .timeline .t-item:last-child::after{
+      bottom: 1.6rem;   /* tweak this (0.8rem–1.4rem) until it ends perfectly */
+    }
+
+
+
+
+    /* ========== Footer ========== */
+    .site-footer{
+      width: 100%;
+      background: #f9fafb;
+      border-top: 1px solid #e5e7eb;
+      padding: 2rem 0;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-      font-size: 0.95rem;
-    }
-
-    .links a {
-      display: inline-flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.35rem;
     }
 
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      padding: 1.5rem 1rem 2.5rem;
+    .copyright{
+      color: #6b7280;
     }
+
+    .social-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .social-icon{
+      filter: brightness(0) saturate(100%) invert(25%) sepia(8%) saturate(600%) hue-rotate(180deg) brightness(95%) contrast(90%);
+      opacity: 0.65;
+    }
+    .social-links a:hover .social-icon{
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .social-links a:focus {
+      outline: 2px solid rgba(229, 231, 235, 0.4);
+      outline-offset: 6px;
+      border-radius: 4px;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 640px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: center;
+      }
+      
+      .copyright {
+        order: 2;
+        font-size: 0.8rem;
+      }
+      
+      .social-links {
+        order: 1;
+        gap: 2rem;
+      }
+      
+      .social-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+
 
     /* ========== Responsive behavior ========== */
     @media (max-width: 600px) {
@@ -357,6 +565,36 @@
         gap: 1rem;
       }
     }
+
+    /* ===== Smooth Scroll ===== */
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+    }
+
+    /* ===== Subtle scroll-reveal on sections ===== */
+
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ transition: none; transform: none; opacity: 1; }
+    }
+
+
   </style>
 </head>
 <body id="top">
@@ -365,11 +603,10 @@
       <a class="brand" href="#top">Bryant Chendra Shiung</a>
       
       <div class="topnav-links">
-        <a href="#about" class="active">About</a> 
+        <a href="#about">About</a> 
         <a href="#projects">Projects</a>
         <a href="#education">Education</a>
         <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
       </div>
       <!-- Resume (disabled until ready)
       <div class="topnav-toggle">
@@ -429,166 +666,337 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <p class="project-tagline">
-        Split quant projects and ML/Business analytics projects
-      </p>
-      <div class="projects-grid">
-        <article class="project-card">
-          <h3 class="project-title">Drawdown-Constrained Portfolio Optimization (APRA)</h3>
-          <p class="project-tagline">
-            Optimizing portfolios under regulatory drawdown constraints while keeping returns attractive.
-          </p>
-          <p>
-            Built a stochastic optimization framework that incorporates APRA-style drawdown constraints
-            directly into the objective. Compared unconstrained vs constrained portfolios and analyzed the
-            trade-off between maximum drawdown and expected return.
-          </p>
-          <p class="project-meta">
-            <span class="pill">Python</span>
-            <span class="pill">CVXPy</span>
-            <span class="pill">Portfolio theory</span>
-          </p>
-        </article>
 
-        <article class="project-card">
-          <h3 class="project-title">Intraday Derivatives Pricing & Basket Options</h3>
-          <p class="project-tagline">
-            Pricing complex derivatives with intraday data and analyzing risk exposures.
-          </p>
-          <p>
-            Implemented pricing models for basket options using simulation-based methods and
-            investigated the impact of correlation structures on payoff distributions and hedging.
-          </p>
-          <p class="project-meta">
-            <span class="pill">Python</span>
-            <span class="pill">Monte Carlo</span>
-            <span class="pill">Derivatives</span>
-          </p>
-        </article>
+      <!-- Filter UI -->
+      <div class="projects-toolbar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="quant">Quant</button>
+        <button class="filter-btn" data-filter="data">Data</button>
+        <button class="filter-btn" data-filter="ml">ML</button>
       </div>
-    </section>
 
-    <section id="data-projects">
-      <h2>Data Science & Statistical Projects</h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <h3 class="project-title">CPI Forecasting & Macroeconomic Analysis</h3>
-          <p class="project-tagline">
-            Time series modeling of inflation indicators for business and policy context.
-          </p>
-          <p>
-            Built and compared forecasting models for CPI using time series methods and
-            evaluated performance across different forecast horizons. Focused on interpretability
-            and drivers of inflation.
-          </p>
-          <p class="project-meta">
-            <span class="pill">Time series</span>
-            <span class="pill">Python/R</span>
-            <span class="pill">Forecasting</span>
-          </p>
-        </article>
+      <!-- Cards render here -->
+      <div id="projectsGrid" class="projects-grid"></div>      
 
-        <article class="project-card">
-          <h3 class="project-title">Australian National Health Survey Analysis</h3>
-          <p class="project-tagline">
-            In-depth statistical analysis with nutritionists using large-scale survey data.
-          </p>
-          <p>
-            Worked with Australian National Health Survey data to analyze dietary patterns and
-            health outcomes. Collaborated with domain experts to design analyses and communicate findings.
-          </p>
-          <p class="project-meta">
-            <span class="pill">R</span>
-            <span class="pill">Survey data</span>
-            <span class="pill">Statistical modeling</span>
-          </p>
-        </article>
-      </div>
     </section>
 
     <section id="education">
       <h2>Education</h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <h3 class="project-title">B.Sc. Financial Mathematics & Statistics</h3>
-          <h4 class="project-title">University of Sydney</h4>
-          <p class="project-tagline">
-            Second Major: Business Analytics
-          </p>
-          <p>
-            Relevant Coursework: ...
-          </p>
-        </article>
 
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-content">
+            <div class="t-head">
+              <div class="t-title">B.Sc. Financial Mathematics & Statistics</div>
+              <div class="t-date">2023 – 2026</div>
+            </div>
+
+            <div class="t-sub">University of Sydney · NSW, Australia</div>
+
+            <div class="t-row">
+              <span class="t-label">Second Major</span>
+              <span class="t-text">Business Analytics</span>
+            </div>
+
+            <div class="t-row">
+              <span class="t-label">Relevant Coursework</span>
+              <span class="t-text">Financial Derivatives, Optimization and Financial Mathematics, Operations Research, Linear and Dynamic Programming, Stochastic Processes.</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="t-item">
+          <div class="t-content">
+            <div class="t-head">
+              <div class="t-title">GCE A-Levels</div>
+              <div class="t-date">2017 – 2020</div>
+            </div>
+
+            <div class="t-sub">Sekolah Global Indo-Asia · Batam, Indonesia</div>
+
+            <div class="t-row">
+              <span class="t-label">Achievements</span>
+              <span class="t-text">Regional Math and Physics Olympiad, Harvard Model Congress Asia, Sakura Science Exchange Program, Grade 8 ABRSM piano</span>
+            </div>
+
+            <div class="t-row">
+              <span class="t-label">Club Involvements</span>
+              <span class="t-text">Debate team captain, Basketball vice-captain, Lead guitarist for the school band</span>
+            </div>
+          </div>
+        </div>
+        <!-- Add more t-item blocks later -->
       </div>
     </section>
+
 
   
     <section id="experience">
       <h2>Experience & Leadership</h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <h3 class="project-title">Army National Service – Leadership Role</h3>
-          <p class="project-tagline">
-            HQ Platoon Sergeant, Anti-Tank Specialist, Drill Sergeant.
-          </p>
-          <p>
-            Briefly describe what you were responsible for: team size, type of missions/training, any formal
-            leadership appointments, and how this translates to ownership, discipline, and decision-making in a professional setting.
-          </p>
-          <p>
-            Achievements: Commander of the month for the 3rd Singapore Infantry Regiment Batallion
-          </p>
-        </article>
 
-        <article class="project-card">
-          <h3 class="project-title">Rotary Club – Volunteering</h3>
-          <p class="project-tagline">
-            Community engagement and service with an international organisation.
-          </p>
-          <p>
-            Mention the kind of projects you were involved in (fundraising, events, mentoring, etc.),
-            your role, and any initiatives you helped lead or organise.
-            Involvement in fundraising, mentoring and educating.
-          </p>
-        </article>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-content">
+            <div class="t-head">
+              <div class="t-title">Military Service</div>
+              <div class="t-date">Aug 2020 – Aug 2022</div>
+            </div>
 
-        <article class="project-card">
-          <h3 class="project-title">[Work Experience Role]</h3>
-          <p class="project-tagline">
-            Brief, role-level summary (e.g. analytics intern, tutoring, part-time finance role).
-          </p>
-          <p>
-            Summarise your responsibilities and highlight anything quantitative, analytical, or client-facing:
-            reporting, dashboards, modelling, stakeholder interaction, or process improvements.
-          </p>
-        </article>
+            <div class="t-sub">3rd Infantry Regiment, 9th Division, Singapore Armed Forces</div>
+
+            <div class="t-row">
+              <span class="t-label">Roles</span>
+              <span class="t-text">Army Platoon Sergeant, Anti-Tank Specialist, Drill Sergeant</span>
+            </div>
+
+            <div class="t-row">
+              <span class="t-label">Responsibilities</span>
+              <span class="t-text">Led team operations, conducted specialized training missions, managed [X] personnel in high-stakes scenarios requiring disciplined execution and strategic decision-making</span>
+            </div>
+
+            <div class="t-row">
+              <span class="t-label">Achievement</span>
+              <span class="t-text">Commander of the Month in the Battalion</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-content">
+            <div class="t-head">
+              <div class="t-title">Volunteer & Community Organizer</div>
+              <div class="t-date">2018</div>
+            </div>
+
+            <div class="t-sub">Rotary Club</div>
+
+            <div class="t-row">
+              <span class="t-label">Focus Areas</span>
+              <span class="t-text">Fundraising, Community Events, Educational Mentoring</span>
+            </div>
+
+            <div class="t-row">
+              <span class="t-label">Contributions</span>
+              <span class="t-text">Co-organized fundraising initiatives, mentored youth participants, contributed to international service projects promoting education and community development</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-content">
+            <div class="t-head">
+              <div class="t-title">Business & Data Analyst Intern</div>
+              <div class="t-date">Nov 2024 – Feb 2025</div>
+            </div>
+
+            <div class="t-sub">[Company Name] · [Location]</div>
+
+            <div class="t-row">
+              <span class="t-label">Key Responsibilities</span>
+              <span class="t-text">Financial modeling, data visualization, stakeholder reporting</span>
+            </div>
+
+            <div class="t-row">
+              <span class="t-label">Impact</span>
+              <span class="t-text">Developed analytical dashboards, improved reporting processes by [X]%, supported client-facing presentations with quantitative insights</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact & Links</h2>
-      <p>If you’d like to connect or see more detail:</p>
-      <div class="links">
-        <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
-        <a href="mailto:your.email@domain.com">Email</a>
-        <a href="https://github.com/your-username" target="_blank">GitHub</a>
-      </div>
-    </section>
-  </main>
+</main>
 
-  <footer>
-    © <span id="year"></span> Bryant Chendra Shiung
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p class="copyright">© <span id="year"></span> Bryant Chendra Shiung</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/bryantchendra/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <img src="assets/linkedin.svg" alt="" class="social-icon" />
+        </a>
+        <a href="https://github.com/bryantchendra" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img src="assets/github.svg" alt="" class="social-icon" />
+        </a>
+        <a href="mailto:sbhi4635@uni.sydney.edu.au" aria-label="Email">
+          <img src="assets/mail.svg" alt="" class="social-icon" />
+        </a>
+      </div>
+    </div>
   </footer>
 
   <script>
+    // Add reveal class to sections
+    document.querySelectorAll("main section").forEach(s => s.classList.add("reveal"));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("is-visible");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+
+
+  <script>
+    /* ===== Footer year ===== */
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-  <!-- particles.js library from CDN -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-  <!-- your script that loads assets/particles.json -->
   <script src="js/app.js"></script>
+
+  <script>
+      /* ===== Projects data ===== */
+    const projects = [
+    {
+      title: "Drawdown-Constrained Portfolio Optimization (APRA)",
+      desc: "Built a stochastic optimization framework with drawdown constraints and compared constrained vs unconstrained portfolios.",
+      tags: ["Python", "CVXPy", "Portfolio"],
+      category: "quant",
+      date: "2025-06-01",
+      link: "https://github.com/your-username/your-repo"
+    },
+    {
+      title: "AAPL Intraday Derivatives Pricing",
+      desc: "Implemented simulation-based pricings and studied correlation impact on payoffs/hedging.",
+      tags: ["Python", "Monte Carlo", "Derivatives"],
+      category: "quant",
+      date: "2025-03-10",
+      link: "#"
+    },
+    {
+      title: "Linking Self-Rated Health with Objective Health Measures",
+      desc: "Using cross-sectional Australian Health Survey data to associate and predict self-rated health, using models like Random Forest, Elastic-Net, Ordinal Logistic Regression and XGBoost.",
+      tags: ["R"],
+      category: "quant",
+      date: "2025-03-10",
+      link: "#"
+    },
+    {
+      title: "Replicating the XLF",
+      desc: "Implemented basket option formulations (multi asset GBM) for pricing the XLF",
+      tags: ["Python", "Monte Carlo", "Derivatives"],
+      category: "quant",
+      date: "2025-03-10",
+      link: "#"
+    },
+    {
+      title: "Modelling Volatility Surfaces",
+      desc: "(local?) Volatility skew/smile",
+      tags: ["Python"],
+      category: "quant",
+      date: "2025-03-10",
+      link: "#"
+    },
+    {
+      title: "Levy Processes for Pricing Derivatives",
+      desc: "Jump Diffusion models, poisson & exponential family",
+      tags: ["Python"],
+      category: "quant",
+      date: "2025-03-10",
+      link: "#"
+    },
+    {
+      title: "Intraday Derivatives Pricing",
+      desc: "Implemented simulation-based basket option pricing and studied correlation impact on payoffs/hedging.",
+      tags: ["Python", "Monte Carlo", "Derivatives"],
+      category: "quant",
+      date: "2025-03-10",
+      link: "#"
+    },
+    {
+      title: "CPI Forecasting & Macroeconomic Analysis",
+      desc: "Built and evaluated time-series forecasting models across a 2 year horizon.",
+      tags: ["Time Series", "Python", "Forecasting"],
+      category: "data",
+      date: "2024-11-15",
+      link: "#"
+    },
+    {
+      title: "Predicting ASX200 Volatility",
+      desc: "Estimating volatility of the ASX200 using log-GARCH(1,1) using Markov-Chain Monte Carlo and Mean-Field Variational Bayes.",
+      tags: ["Time Series", "MATLAB", "Bayesian Statistics"],
+      category: "quant",
+      date: "2024-10-15",
+      link: "#"
+    },
+    {
+      title: "Weather Forecast",
+      desc: "Forecasting weather using ECMWF and GFS (hydrostatic and non-hydrostatic model).",
+      tags: ["Python/R", "Forecasting"],
+      category: "ml",
+      date: "2024-10-15",
+      link: "#"
+    }
+    ];
+
+    const grid = document.getElementById("projectsGrid");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    function renderProjects(filter = "all") {
+      const sorted = [...projects].sort((a, b) => new Date(b.date) - new Date(a.date));
+      const filtered = filter === "all" ? sorted : sorted.filter(p => p.category === filter);
+
+      grid.innerHTML = filtered.map(p => `
+        <a class="project-card" href="${p.link}" target="_blank" rel="noopener">
+          <h3>${p.title}</h3>
+          <p class="desc">${p.desc}</p>
+
+          <div class="meta">
+            ${p.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+          </div>
+
+          <div class="card-arrow">
+            <img src="assets/arrow-right.svg" alt="View project" />
+          </div>
+        </a>
+      `).join("");
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    renderProjects("all");
+
+    // ===== Nav active pill on scroll (NO highlight in hero) =====
+    (function () {
+      const navLinks = document.querySelectorAll(".topnav-links a");
+      const sections = [...document.querySelectorAll("main section[id]")];
+
+      function setActiveNav() {
+        if (!sections.length) return;
+
+        const y = window.scrollY + 120;
+
+        // If we're above the first section, keep everything neutral
+        if (y < sections[0].offsetTop) {
+          navLinks.forEach(a => a.classList.remove("active"));
+          return;
+        }
+
+        let current = sections[0].id;
+        for (const sec of sections) {
+          if (sec.offsetTop <= y) current = sec.id;
+        }
+
+        navLinks.forEach(a => {
+          a.classList.toggle("active", a.getAttribute("href") === `#${current}`);
+        });
+      }
+
+      window.addEventListener("scroll", setActiveNav, { passive: true });
+      window.addEventListener("load", setActiveNav);
+      setActiveNav();
+    })();
+  </script>
+
+
 </body>
 </html>
